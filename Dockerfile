@@ -5,16 +5,16 @@ ARG JAVA_DIR=jdk1.8
 
 RUN mkdir -p /usr/local/jdk \
   && cd /usr/local/jdk \
-  && (curl -sb "oraclelicense=accept-securebackup-cookie" $JAVA_URL | tar zxvf) \
+  && (curl -Lsb "oraclelicense=accept-securebackup-cookie" $JAVA_URL | tar zx) \
   && mv $DIR* $DIR
-
-RUN mkdir -p /usr/local/jdk/lib \
-  && cd /usr/local/jdk/lib \
-  && curl -sO https://repo1.maven.org/maven2/junit/junit/4.12/junit-4.12.jar \
-  && curl -sO https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
 
 ENV JAVA_HOME /usr/local/jdk/$DIR
 ENV JRE_HOME $JAVA_HOME/jre
 ENV PATH $PATH:$JAVA_HOME/bin
 
 ADD aplus /aplus
+
+RUN mkdir -p /usr/local/jdk/lib \
+  && cd /usr/local/jdk/lib \
+  && curl -sO https://repo1.maven.org/maven2/junit/junit/4.12/junit-4.12.jar \
+  && curl -sO https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
