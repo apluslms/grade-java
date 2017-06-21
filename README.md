@@ -7,4 +7,4 @@ In addition, following convenience scripts are provided in path.
     and then deletes source files.
 
     If classpath is omitted every JAR file in
-    /usr/local/jdk/lib is included.
+    /usr/local/java/lib is included.

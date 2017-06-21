@@ -3,7 +3,7 @@ SCRIPTDIR=`dirname $0`
 ARGS=
 CP=$1
 if [ "$CP" == "" ]; then
-	CP=.:/usr/local/jdk/lib/*
+	CP=.:/usr/local/java/lib/*
 fi
 
 # Fix package directories for files uploaded to root.
