@@ -9,7 +9,7 @@ RUN mkdir -p $JAVA_DIR && cd $JAVA_DIR \
   && update-alternatives --install "/usr/bin/java" "java" "$JAVA_DIR/$JAVA_VER/bin/java" 1 \
   && update-alternatives --install "/usr/bin/javac" "javac" "$JAVA_DIR/$JAVA_VER/bin/javac" 1
 
-ADD aplus /aplus
+ADD bin /usr/local/bin
 
 RUN mkdir -p $JAVA_DIR/lib && cd $JAVA_DIR/lib \
   && curl -LsO http://search.maven.org/remotecontent?filepath=junit/junit/4.12/junit-4.12.jar \
