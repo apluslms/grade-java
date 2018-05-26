@@ -1,0 +1,11 @@
+#!/bin/sh
+OUT=/dev/shm/junit-out
+ERR=/dev/shm/junit-err
+mkfifo -m 0600 $OUT $ERR
+sed '/^\tat /d' $OUT &
+sed '/^\tat /d' $ERR >&2 &
+"$@" > $OUT 2>$ERR
+RES=$?
+wait
+rm $OUT $ERR || true
+exit $RES

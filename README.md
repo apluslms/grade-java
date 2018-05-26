@@ -26,3 +26,14 @@ In addition, following convenience scripts are provided in path.
     In case of readonly files (e.g. /exercise mount), files are copied instead.
 
     The argument `-v` ands verbose flag for `mv` and `cp` commands with output redirected to stderr.
+
+* `junit [-r runner] [files..]`
+
+    Executes java using `runner` as the class, `files` as argument and filters output with `filter-junit-stack`.
+    Default `runner` is `org.junit.runner.JUnitCore`.
+    To run test stuite or custom main, use something like `junit -r MyTests` or `filter-junit-stack java MyTests`.
+
+* `filter-junit-stack CMD..`
+
+    Executes CMD and removes all lines starting with `\tat ` from stdout and stderr.
+    For example, junit prints stack traces in this format.

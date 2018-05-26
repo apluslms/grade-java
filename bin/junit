@@ -1,0 +1,14 @@
+#!/bin/sh
+
+runner="org.junit.runner.JUnitCore"
+while [ "$1" ]; do
+    case "$1" in
+        -r) runner=$2 ;;
+        --) shift ; break ;;
+        -*) echo "ERROR: Invalid option '$1' for $0" >&2 ; exit 64 ;;
+        *) break ;;
+    esac
+    shift 2
+done
+
+exec filter-junit-stack java "$runner" "$@"
