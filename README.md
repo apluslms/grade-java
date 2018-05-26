@@ -37,3 +37,14 @@ In addition, following convenience scripts are provided in path.
 
     Executes CMD and removes all lines starting with `\tat ` from stdout and stderr.
     For example, junit prints stack traces in this format.
+
+* `run-all-junits [-C] [-p points_per_test_class]`
+
+    Command to do it all.
+    Can replace `run.sh` in trivial cases.
+
+    First, script compiles all `*.java` files from the current tree and /exercise, unless `-C` is provided.
+    If compilation failes, then no tests are run.
+    Second, script finds all files matching `*Test*.java` pattern from the current tree.
+    Then, it runs all files that contain string `org.junit.Test` using `testcase` and `junit`.
+    Testcase will give `points_per_test_class` many points per successful execution of junit.
