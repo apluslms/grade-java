@@ -1,0 +1,78 @@
+#!/bin/sh -e
+# Moves or copies scala/java files to package directories.
+
+delim=' '
+filter='*.java *.scala'
+verbose=
+while [ "$1" ]; do
+    case "$1" in
+        -d) delim=$2 ; shift ;;
+        -f) filter=$2 ; shift ;;
+        -v) verbose="-v" ;;
+        --) shift ; break ;;
+        -*) echo "ERROR: Invalid option '$1' for $0" >&2 ; exit 64 ;;
+        *) break ;;
+    esac
+    shift
+done
+
+find_files() {
+    path=$1
+    set -f # disable * expansion for $filter
+    set --
+    for f in $filter; do
+        [ "$1" ] && set -- "$@" '-o'
+        set -- "$@" '-iname' "$f"
+    done
+    find "$path" '(' "$@" ')' -print0
+}
+
+handle_dir() {
+    dir=$1
+    set -- '-d' "$delim"
+    [ "$verbose" ] && set -- "$@" '-v'
+    find_files "$dir" | xargs -r0 "$0" "$@" '--'
+    return $?
+}
+
+if [ -z "$*" ]; then
+    handle_dir .
+    exit $?
+fi
+
+for file; do
+    if ! [ -e "$file" ]; then
+        echo "WARNING: '$file' is missing" >&2
+        continue
+    elif [ -d "$file" ]; then
+        handle_dir "$file"
+        RES=$?
+        [ $RES -ne 0 ] && echo "WARNING: $0 handle_dir() failed with $RES"
+        continue
+    fi
+
+    # Extract java/scala package and package object from the source file
+    package=$(grep -Ezo 'package\s*[^[:space:];]+' "$file" | head -zn1 | sed -z 's/^package\s*//g')
+    package_obj=$(grep -Ezo 'package\s*object\s*[^][)(}{[:space:];]+' "$file" | head -zn1 | sed -z 's/^package\s*object\s*//g')
+    [ "$package_obj" ] && package=$package.$package_obj
+
+    # Destination directory and file
+    dir=$(echo "$package" | tr -d '\n' | tr '.' '/' | sed 's,^/*,,g')
+    [ "$dir" ] || dir='.'
+    [ -d "$dir" ] || mkdir -p "$dir"
+    dest=$dir/${file##*/}
+
+    if [ "$(realpath "$file")" = "$(realpath "$dest")" ]; then
+        # No move required
+        :
+    elif [ -e "$dest" ]; then
+        # Destination exists
+        echo "WARNING: can't copy '$file' to '$dest' as destination already exists." >&2
+    elif [ -w "$file" ]; then
+        mv $verbose "$file" "$dir" >&2
+    else
+        cp $verbose "$file" "$dir" >&2
+    fi
+
+    printf "$dest$delim"
+done
