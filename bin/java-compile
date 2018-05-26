@@ -1,0 +1,29 @@
+#!/bin/sh
+
+ok_message="ok"
+while [ "$1" ]; do
+    case "$1" in
+        -m) ok_message=$2 ; shift ;;
+        -M) ok_message="" ;;
+        --) shift ; break ;;
+        -*) echo "ERROR: Invalid option '$1' for $0" >&2 ; exit 64 ;;
+        *) break ;;
+    esac
+    shift
+done
+
+move-to-package-dirs -d '\n' -f '*.java' -- "$@" | (
+    set --
+    while read file; do
+        set -- "$@" "$file"
+    done
+    if [ -z "$1" ]; then
+        echo "ERROR: no files to compile" >&2
+        exit 1
+    fi
+
+    javac -d . "$@"
+    RES=$?
+    [ $RES -eq 0 -a "$ok_message" ] && echo "$ok_message"
+    exit $RES
+)

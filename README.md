@@ -1,13 +1,15 @@
 Grading environment with specific Java version in path.
 In addition, following convenience scripts are provided in path.
 
-* `java_compile.sh [CLASSPATH]`
+* `java-compile [-M] [-m ok_message] [files/dirs..]`
 
-    Compiles java sources inside the working directory,
-    and then deletes source files.
+    Passes `files/dirs` to `move-to-package-dirs` and then executes `javac` with all matched files.
+    If `files/dirs` is empty (no argument), then all `*.java` files in the working tree are moved and compiled.
 
-    If classpath is omitted every JAR file in
-    /usr/local/java/lib is included.
+    You can control classpath via `CLASSPATH` environment variable.
+
+    If compilation is successfull, then `ok_message` is printed.
+    By default, it is `ok`, but it can be suppressed with `-M`.
 
 * `move-to-package-dirs [-v] [-d delim] [-f filter] [files/dirs..]`
 
