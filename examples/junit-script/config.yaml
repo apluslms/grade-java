@@ -1,0 +1,29 @@
+---
+title: Java JUnit example (run.sh)
+description: An example of using JUnit with grading script
+instructions: |
+    <h4>The problem</h4>
+    <p>
+        Write class <code>apluslms.HelloWorld</code> that has three methods.
+        First, <code>String getName()</code> that returns a name.
+        Second, <code>void setName(String)</code> that sets the name.
+        Finalle, <code>String getMessage()</code> that returns the full message.
+        Message is text <samp>Hello!</samp> if there is no name and <samp>Hello World!</samp>
+        if name is <samp>World</samp>.
+    </p>
+
+view_type: access.types.stdasync.acceptFiles
+files:
+  - field: file1
+    name: HelloWorld.java
+
+itemplate_files:
+  - junit-all/HelloWorld_template.java
+
+model_files:
+  - junit-all/HelloWorld.java 
+
+container:
+  image: apluslms/grade-java:dev
+  mount: junit-script
+  cmd: /exercise/run.sh
