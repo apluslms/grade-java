@@ -21,9 +21,9 @@ itemplate_files:
   - junit-all/HelloWorld_template.java
 
 model_files:
-  - junit-all/HelloWorld.java 
+  - junit-all/HelloWorld.java
 
 container:
-  image: apluslms/grade-java:dev
+  image: apluslms/grade-java
   mount: junit-script
   cmd: /exercise/run.sh
