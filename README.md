@@ -1,4 +1,6 @@
 Grading environment with specific Java version in path.
+
+This image extends [grading-base](https://github.com/apluslms/grading-base).
 In addition, following convenience scripts are provided in path.
 
 * `java-compile [-M] [-m ok_message] [files/dirs..]`
