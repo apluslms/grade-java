@@ -9,6 +9,8 @@ In addition, following convenience scripts are provided in path.
     If `files/dirs` is empty (no argument), then all `*.java` files in the working tree are moved and compiled.
 
     You can control classpath via `CLASSPATH` environment variable.
+    You can define options for `javac` using `JAVACFLAGS` environment variable.
+    Default options are `-encoding utf-8 -deprecation`.
 
     If compilation is successfull, then `ok_message` is printed.
     By default, it is `ok`, but it can be suppressed with `-M`.
