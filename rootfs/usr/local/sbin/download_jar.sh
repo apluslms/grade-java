@@ -17,8 +17,6 @@ if ! curl -LSs --fail --fail-early "$@"; then
 fi
 
 for e in "" .asc; do
-    echo "$file$e.sha1:"
-    cat "$file$e.sha1"
     echo "$(cat $file$e.sha1) $file$e" | sha1sum -c -
     rm "$file$e.sha1"
 done
