@@ -33,7 +33,7 @@ In addition, following convenience scripts are provided in path.
 
 * `junit [-r runner] [files..]`
 
-    Executes java using `runner` as the class, `files` as argument and filters output with `filter-junit-stack`.
+    Executes java using `runner` as the class, `files` as arguments and filters output with `filter-junit-stack`.
     Default `runner` is `org.junit.runner.JUnitCore`.
     To run test stuite or custom main, use something like `junit -r MyTests` or `filter-junit-stack java MyTests`.
 
@@ -48,7 +48,7 @@ In addition, following convenience scripts are provided in path.
     Can replace `run.sh` in trivial cases.
 
     First, script compiles all `*.java` files from the current tree and /exercise, unless `-C` is provided.
-    If compilation failes, then no tests are run.
+    If compilation fails, then no tests are run.
     Second, script finds all files matching `*Test*.java` pattern from the current tree.
     Then, it runs all files that contain string `org.junit.Test` using `testcase` and `junit`.
     Testcase will give `points_per_test_class` many points per successful execution of junit.
