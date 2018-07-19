@@ -1,7 +1,7 @@
 FROM apluslms/grading-base:2.4
 
-ARG JAVA_VER=jdk1.8.0_171
-ARG JAVA_URL=https://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz
+ARG JAVA_VER=jdk1.8.0_181
+ARG JAVA_URL=https://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz
 ARG JAVA_DIR=/usr/local/java
 ENV JAVA_HOME=$JAVA_DIR/$JAVA_VER
 
@@ -18,7 +18,6 @@ RUN mkdir -p $JAVA_DIR && cd $JAVA_DIR \
        COPYRIGHT LICENSE README.html THIRDPARTYLICENSEREADME.txt \
        bin/jvisualvm \
        bin/jmc bin/jmc.ini \
-       db \
        jre/COPYRIGHT jre/LICENSE jre/README jre/THIRDPARTYLICENSEREADME.txt jre/Welcome.html \
        jre/plugin \
        lib/jexec \
