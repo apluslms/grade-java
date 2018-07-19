@@ -1,7 +1,5 @@
 FROM apluslms/grading-base:2.4
 
-COPY rootfs /
-
 ARG JAVA_VER=jdk1.8.0_171
 ARG JAVA_URL=https://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz
 ARG JAVA_DIR=/usr/local/java
@@ -36,4 +34,5 @@ RUN mkdir -p $JAVA_DIR && cd $JAVA_DIR \
  && download_verify -a -s -as https://search.maven.org/remotecontent?filepath=junit/junit/4.12/junit-4.12.jar \
  && download_verify -a -s -as https://search.maven.org/remotecontent?filepath=org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
 
+COPY bin /usr/local/bin
 ENV CLASSPATH=.:/exercise:/exercise/*:/exercise/lib/*:$JAVA_DIR/lib/*:$JAVA_HOME/lib/*:$JAVA_HOME/jre/lib/*

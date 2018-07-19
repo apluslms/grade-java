@@ -1,5 +1,0 @@
-#!/bin/sh -e
-[ "$1" ] || exit 1
-for f; do
-    gpg --keyserver keyserver.ubuntu.com --recv-keys "$f" 2>&1
-done
