@@ -10,7 +10,7 @@ while [ "$1" ]; do
         --) shift ; break ;;
         -*)
             echo "ERROR: Invalid option '$1' for $0" >&2
-            echo "usage: $0 [-S] [-p points_per_test_class]" >&2
+            echo "usage: $0 [-C] [-p points_per_test_class]" >&2
             exit 64
             ;;
         *) break ;;
