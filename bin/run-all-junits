@@ -18,7 +18,7 @@ while [ "$1" ]; do
 done
 
 if [ "$compile" = "yes" ]; then
-    testcase -t "Compile" java-compile /exercise ./
+    testcase -t "Compile" java-compile ./ /exercise
     ok=$?
 fi
 
