@@ -2,12 +2,18 @@ FROM apluslms/grading-base:2.5
 
 ARG JAVA_VER=jdk1.8.0_202
 ARG JAVA_URL=https://download.oracle.com/otn-pub/java/jdk/8u202-b08/1961070e4c9b4e26a04e7f5a083f551e/jdk-8u202-linux-x64.tar.gz
+ARG JAVA_SHA=9a5c32411a6a06e22b69c495b7975034409fa1652d03aeb8eb5b6f59fd4594e0
 ARG JAVA_DIR=/usr/local/java
 ENV JAVA_HOME=$JAVA_DIR/$JAVA_VER
 
 RUN mkdir -p $JAVA_DIR && cd $JAVA_DIR \
  # Download java
- && (curl -LSsb "oraclelicense=accept-securebackup-cookie" $JAVA_URL | tar zx) \
+ && curl -LSs -o jdk.tar.gz -b "oraclelicense=accept-securebackup-cookie" "$JAVA_URL" \
+ && (echo "$JAVA_SHA jdk.tar.gz" | sha256sum -c -) \
+ && tar -zxf jdk.tar.gz \
+ && rm jdk.tar.gz \
+\
+ # Link java binaries to PATH
  && update-alternatives --install "/usr/bin/java" "java" "$JAVA_HOME/bin/java" 1 \
  && update-alternatives --install "/usr/bin/javac" "javac" "$JAVA_HOME/bin/javac" 1 \
 \
