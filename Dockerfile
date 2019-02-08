@@ -1,4 +1,4 @@
-FROM apluslms/grading-base:2.5
+FROM apluslms/grading-base:2.8
 
 ARG JAVA_VER=jdk1.8.0_202
 ARG JAVA_URL=https://download.oracle.com/otn-pub/java/jdk/8u202-b08/1961070e4c9b4e26a04e7f5a083f551e/jdk-8u202-linux-x64.tar.gz
