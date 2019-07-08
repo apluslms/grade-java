@@ -5,14 +5,14 @@ public class HelloWorld {
 	private String name = "";
 
 	public String getName() {
-		// FIXME: Implement
+		// TODO: Implement
 	}
 
 	public void setName(String name) {
-		// FIXME: Implement
+		// TODO: Implement
 	}
 
 	public String getMessage() {
-		// FIXME: Implement
+		// TODO: Implement
 	}
 }
