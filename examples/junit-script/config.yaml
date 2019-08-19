@@ -17,7 +17,7 @@ files:
   - field: file1
     name: HelloWorld.java
 
-itemplate_files:
+template_files:
   - junit-all/HelloWorld_template.java
 
 model_files:
