@@ -24,3 +24,4 @@ RUN : \
 
 COPY bin /usr/local/bin
 ENV CLASSPATH=.:/exercise:/exercise/*:/exercise/lib/*:/usr/local/java/lib/*
+CMD ["run-all-junits"]
