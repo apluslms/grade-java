@@ -6,10 +6,10 @@ RUN : \
  # openjdk package fails in debian slim container... fix that
  && mkdir -p /usr/share/man/man1 \
  && apt_install \
-    # Install Java 8
-    openjdk-8-jdk-headless \
+    # Install Java 11
+    openjdk-11-jdk-headless \
  # fixes missing org.GNOME.Accessibility.AtkWrapper
- && echo "" > /etc/java-8-openjdk/accessibility.properties \
+ && echo "" > /etc/java-11-openjdk/accessibility.properties \
  # install apt+ivy for ivy_install
  && apt_install \
     ant \
