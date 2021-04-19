@@ -1,4 +1,5 @@
-FROM apluslms/grading-base:3.0
+ARG BASE_TAG=latest
+FROM apluslms/grading-base:$BASE_TAG
 
 COPY rootfs /
 
@@ -18,7 +19,7 @@ RUN : \
 \
  # Install libraries
  && ivy_install -n "grade-java" -d "/usr/local/java/lib" \
-    junit junit 4.12 \
+    junit junit 4.13 \
 \
  && :
 
