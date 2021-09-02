@@ -8,9 +8,9 @@ RUN : \
  && mkdir -p /usr/share/man/man1 \
  && apt_install \
     # Install Java 11
-    openjdk-11-jdk-headless \
+    openjdk-17-jdk-headless \
  # fixes missing org.GNOME.Accessibility.AtkWrapper
- && echo "" > /etc/java-11-openjdk/accessibility.properties \
+ && echo "" > /etc/java-17-openjdk/accessibility.properties \
  # install apt+ivy for ivy_install
  && apt_install \
     ant \
