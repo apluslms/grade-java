@@ -1,5 +1,5 @@
 ARG BASE_TAG=latest
-FROM apluslms/grading-base:$BASE_TAG
+FROM --platform=$TARGETPLATFORM apluslms/grading-base:$BASE_TAG
 
 COPY rootfs /
 
